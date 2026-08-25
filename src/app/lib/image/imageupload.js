@@ -5,6 +5,6 @@ export const uploadImage = async (image) => {
         method: "POST",
         body: formData
     });
-    const data = await response.json();
-    return data;
+    const result = await response.json();
+    return result.data.display_url;
 }

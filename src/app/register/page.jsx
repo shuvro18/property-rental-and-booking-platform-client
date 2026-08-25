@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { Description, FieldError, Input, TextField } from "@heroui/react";
 import { authClient } from "../lib/auth-client";
+import { uploadImage } from "../lib/image/imageupload";
 
 
 
@@ -42,7 +43,11 @@ const RegisterPage = () => {
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData.entries());
 
-        const { name, email, password, image } = user
+        const image = await uploadImage(user.image);
+
+
+
+        const { name, email, password, } = user
 
         if (user.password !== user.confirmPassword) {
             setPasswordError("Passwords do not match!")
@@ -73,14 +78,14 @@ const RegisterPage = () => {
         }
 
 
-        
+
 
     };
 
 
 
     return (
-        <div className="flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex min-h-screen items-center justify-center px-4 py-12 mt-10 sm:px-6 lg:px-8">
             {/* মূল কার্ড কন্টেইনার */}
             <div className="w-full max-w-md space-y-6 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
 
@@ -117,12 +122,12 @@ const RegisterPage = () => {
 
                     <div className="space-y-1">
                         <label htmlFor="image" className="text-xs font-medium text-gray-500">
-                            Image URL
+                            Profile Image
                         </label>
                         <input
                             id="image"
                             name="image"
-                            type="url"
+                            type="file"
                             required
                             placeholder="http://shuvro.com"
                             className="block w-full rounded-lg border border-gray-300 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 placeholder-gray-400 focus:border-slate-500 focus:bg-white focus:outline-none transition-colors"
