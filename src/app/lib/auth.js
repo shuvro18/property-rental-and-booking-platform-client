@@ -10,6 +10,21 @@ export const auth = betterAuth({
     // Optional: if you don't provide a client, database transactions won't be enabled.
     client,
   }),
+  user: {
+    additionalFields: {
+      type: {
+        type: "string",
+        required: true,
+        defaultValue: "tenant",
+        input: true, // This field will be included in the registration form
+      },
+      image: {
+        type: "string",
+        required: false,
+        input: true, // This field will be included in the registration form
+      },
+    },
+  },
   emailAndPassword: {
     enabled: true,
   },

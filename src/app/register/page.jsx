@@ -60,7 +60,7 @@ const RegisterPage = () => {
             });
 
             if (error) {
-                toast.err(error.message)
+                toast.error(error.message)
                 return
             } else {
                 toast.success("register compleat " + name);
