@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Eye, EyeOff, LogIn } from "lucide-react" // লগইন আইকনের জন্য (যদি lucide-react ইন্সটল থাকে)
+import { Eye, EyeOff, LogIn } from "lucide-react" 
 import Link from "next/link";
 import { useState } from "react";
 import { authClient } from "../lib/auth-client";
