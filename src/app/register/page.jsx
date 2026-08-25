@@ -4,10 +4,11 @@ import * as React from "react"
 import { Eye, EyeOff, UserPlus } from "lucide-react"
 import { useState } from "react";
 import Link from "next/link";
-import { authClient } from "../lib/auth-client";
+
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { Description, FieldError, Input, TextField } from "@heroui/react";
+import { authClient } from "../lib/auth-client";
 
 
 
@@ -65,13 +66,14 @@ const RegisterPage = () => {
                 toast.success("register compleat " + name);
                 router.push("/")
             }
+            console.log("register data", data)
         }
         catch (err) {
             console.log(err)
         }
 
 
-        console.log(data)
+        
 
     };
 
