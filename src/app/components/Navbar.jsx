@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FiMenu, FiX } from "react-icons/fi";
 import { authClient } from "../lib/auth-client";
 import Image from "next/image";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
 
@@ -57,6 +58,7 @@ const Navbar = () => {
 
                     {/* Desktop Auth Buttons */}
                     <div className="hidden md:flex items-center gap-3">
+                        <ThemeToggle></ThemeToggle>
                         {/* When logged out */}
 
                         {!user && (<div className="flex items-center gap-3"><Link
@@ -90,13 +92,13 @@ const Navbar = () => {
                                         tabIndex={-1}
                                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                                         <li>
-                                            <Link href="/dashboard" className="justify-between">
+                                            <Link href="/dashboard" className="justify-between text-white">
                                                 Dashboard
                                                 <span className="badge">New</span>
                                             </Link>
                                         </li>
-                                        <li><Link href="/settings">Settings</Link></li>
-                                        <li><button onClick={async () => authClient.signOut()} >
+                                        <li><Link className="text-white" href="/settings">Settings</Link></li>
+                                        <li><button className="text-white"  onClick={async () => authClient.signOut()} >
                                             Logout
                                         </button></li>
                                     </ul>
