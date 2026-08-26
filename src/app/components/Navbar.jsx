@@ -106,21 +106,16 @@ const Navbar = () => {
                         )}
                     </div>
 
-
+                    {/* Mobile Toggle */}
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                    >
+                        {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+                    </button>
 
                 </div>
             </div >
-
-
-
-
-            {/* Mobile Toggle */}
-            <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
-            >
-                {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-            </button>
 
 
 
@@ -150,7 +145,7 @@ const Navbar = () => {
                         <Link
                             href="/dashboard"
                             onClick={() => setIsOpen(false)}
-                            className="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                            className="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors"
                         >
                             Dashboard
                         </Link>
