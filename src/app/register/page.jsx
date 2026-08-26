@@ -95,7 +95,7 @@ const RegisterPage = () => {
                         Create Account
                     </h2>
                     <p className="mt-2 text-xs text-gray-500">
-                        Join MediQueue to manage your learning queue with ease
+                        Join Nestora to manage your houser rent 
                     </p>
                 </div>
 
