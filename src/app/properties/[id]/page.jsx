@@ -12,6 +12,8 @@ import {
     Share2
 } from "lucide-react";
 import { getSingleHouse } from "@/app/lib/data";
+import Comment from "@/app/components/Comment";
+import ShowComment from "@/app/components/ShowComment";
 
 
 const propertyDetailPage = async ({ params }) => {
@@ -202,6 +204,10 @@ const propertyDetailPage = async ({ params }) => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="max-w-7xl mx-auto">
+                <Comment paramsId={id}/>
+                <ShowComment id={id}></ShowComment>
             </div>
         </div>
     );
