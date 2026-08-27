@@ -11,7 +11,7 @@ const Navbar = () => {
 
     const { data: session } = authClient.useSession();
     const user = session?.user;
-    console.log("this is user", user)
+    // console.log("this is user", user)
     const [isOpen, setIsOpen] = useState(false);
 
     return (
