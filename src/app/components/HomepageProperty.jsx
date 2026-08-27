@@ -15,7 +15,7 @@ const HomepageProperty = async () => {
                     <p className="font-semibold text-6xl">Curated Residences</p>
                     <p className="">Explore our handpicked selection of premium properties.</p>
                 </div>
-                <Link className="flex items-center gap-2 border rounded-sm hover:text-indigo-500 hover:scaleup-200 duration-200 transition-all" href={"/properties"}>
+                <Link className="flex items-center gap-2  rounded-sm hover:text-indigo-500 hover:scaleup-200 duration-200 transition-all" href={"/properties"}>
                     <p>show all</p>
                     <FaArrowRight className="text-sm" />
                 </Link>
