@@ -1,6 +1,7 @@
 
+import { headers } from 'next/headers';
 import { auth } from './app/lib/auth'
-import { headers } from 'next/headers'
+
 import { NextResponse } from 'next/server'
  
 // This function can be marked `async` if using `await` inside
