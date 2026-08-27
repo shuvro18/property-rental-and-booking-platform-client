@@ -8,7 +8,7 @@ const AllProperties = async () => {
     // console.log(findProperties,"this is find")
     return (
         <div>
-            <div className=" container mx-auto mt-30 gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className=" max-w-7xl mx-auto mt-30 gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {findProperties.map((property) => (
 
                     <PropertyCard key={property._id} property={property}></PropertyCard>
