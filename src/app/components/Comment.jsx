@@ -27,7 +27,7 @@ const Comment = ({ paramsId }) => {
         console.log(commentData)
         const date = new Date().toISOString();
         const finalData = {
-            comments: commentData.comment,
+            comments: commentData.comment.trim(),
             name: user?.name,
             image: user?.image,
             propertyId,

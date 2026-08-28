@@ -14,6 +14,7 @@ import {
 import { getSingleHouse } from "@/app/lib/data";
 import Comment from "@/app/components/Comment";
 import ShowComment from "@/app/components/ShowComment";
+import AddToFavorite from "@/app/components/AddToFavorite";
 
 
 const propertyDetailPage = async ({ params }) => {
@@ -171,10 +172,7 @@ const propertyDetailPage = async ({ params }) => {
                                     Book Now
                                 </button>
 
-                                <button className="w-full py-3.5 text-sm font-semibold text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl transition-all duration-300 flex items-center justify-center gap-2">
-                                    <Heart size={18} />
-                                    Add to Favorites
-                                </button>
+                                <AddToFavorite property={property}/>
 
                                 <button className="w-full py-3.5 text-sm font-semibold text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-all duration-300 flex items-center justify-center gap-2">
                                     <Share2 size={18} />
