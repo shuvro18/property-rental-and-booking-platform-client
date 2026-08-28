@@ -15,11 +15,24 @@ export const postComment = async (data) => {
   return result;
 };
 
-
 // for the add to favorite
 
 export const addToFavorite = async (data) => {
   const res = await fetch(`${backEndUrl}/favorites`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  const result = await res.json();
+  return result;
+};
+
+//post api for bookings
+
+export const addBooking = async (data) => {
+  const res = await fetch(`${backEndUrl}/bookings`, {
     method: "POST",
     headers: {
       "content-type": "application/json",

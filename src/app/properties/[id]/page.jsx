@@ -15,6 +15,7 @@ import { getSingleHouse } from "@/app/lib/data";
 import Comment from "@/app/components/Comment";
 import ShowComment from "@/app/components/ShowComment";
 import AddToFavorite from "@/app/components/AddToFavorite";
+import BookingModal from "@/app/components/Booking";
 
 
 const propertyDetailPage = async ({ params }) => {
@@ -168,9 +169,8 @@ const propertyDetailPage = async ({ params }) => {
 
                             {/* Action Buttons */}
                             <div className="space-y-3">
-                                <button className="w-full py-3.5 text-sm font-semibold text-white bg-linear-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 rounded-xl shadow-md transition-all duration-300">
-                                    Book Now
-                                </button>
+                                
+                                <BookingModal property={property}/>
 
                                 <AddToFavorite property={property}/>
 
