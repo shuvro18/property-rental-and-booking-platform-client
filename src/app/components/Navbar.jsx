@@ -6,13 +6,21 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { authClient } from "../lib/auth-client";
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
 
     const { data: session } = authClient.useSession();
     const user = session?.user;
+
+    const pathname = usePathname();
+
     // console.log("this is user", user)
     const [isOpen, setIsOpen] = useState(false);
+
+    if (pathname.includes("/dashboard")) {
+        return null
+    }
 
     return (
         <header className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm">
@@ -98,7 +106,7 @@ const Navbar = () => {
                                             </Link>
                                         </li>
                                         <li><Link className="text-white" href="/settings">Settings</Link></li>
-                                        <li><button className="text-white"  onClick={async () => authClient.signOut()} >
+                                        <li><button className="text-white" onClick={async () => authClient.signOut()} >
                                             Logout
                                         </button></li>
                                     </ul>
