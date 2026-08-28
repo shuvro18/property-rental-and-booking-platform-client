@@ -100,7 +100,7 @@ const Navbar = () => {
                                         tabIndex={-1}
                                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                                         <li>
-                                            <Link href="/dashboard" className="justify-between text-white">
+                                            <Link href={`/dashboard`} className="justify-between text-white">
                                                 Dashboard
                                                 <span className="badge">New</span>
                                             </Link>
@@ -153,7 +153,7 @@ const Navbar = () => {
 
                     {user ? (<div>
                         <Link
-                            href="/dashboard"
+                            href={`/dashboard`}
                             onClick={() => setIsOpen(false)}
                             className="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors"
                         >
