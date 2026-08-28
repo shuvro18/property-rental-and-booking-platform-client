@@ -12,6 +12,7 @@ const BookingModal = ({ property }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { data: session } = authClient.useSession();
     const user = session?.user;
+    
 
 
     const [loading, setLoading] = useState(false);
@@ -30,24 +31,35 @@ const BookingModal = ({ property }) => {
             contactNumber: formData.get("contactNumber"),
             additionalNotes: formData.get("additionalNotes"),
             createdAt: new Date().toISOString(),
-            status:"pending",
+            status: "pending",
+            price: property?.rent,
         };
+        console.log(bookingData)
 
         setLoading(true);
-        
-        try {
-            const result = await addBooking(bookingData)
 
-            if (result.message) {
-                toast.warn(result.message);
-                setIsOpen(false);
+        try {
+            const response = await fetch("/api/payment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(bookingData),
+            });
+
+            const data = await response.json();
+
+            if (data.url) {
+
+                window.location.href = data.url;
             } else {
-                toast.success(`${user?.name} You Successfully Booked It`);
-                setIsOpen(false);
+                toast.error(data.error || "Failed to redirect to stripe");
             }
+
         } catch (error) {
             console.error("Error booking property:", error);
             toast.error("Something went wrong!");
+
         } finally {
             setLoading(false);
         }
