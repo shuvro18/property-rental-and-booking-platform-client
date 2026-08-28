@@ -30,6 +30,7 @@ const BookingModal = ({ property }) => {
             contactNumber: formData.get("contactNumber"),
             additionalNotes: formData.get("additionalNotes"),
             createdAt: new Date().toISOString(),
+            status:pending,
         };
 
         setLoading(true);
