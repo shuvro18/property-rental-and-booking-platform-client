@@ -27,3 +27,10 @@ export const getTenantBookings = async () => {
   const data = await res.json();
   return data;
 };
+
+//get  favorite
+export const getFavorite = async () => {
+  const res = await fetch(`${backEndUrl}/favorites`);
+  const data = await res.json();
+  return data;
+};

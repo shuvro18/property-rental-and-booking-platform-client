@@ -14,7 +14,7 @@ export default async function TenantBookingsPage() {
   })
 
   const loginUserId = session?.user?.id;
-  console.log(loginUserId)
+  // console.log(loginUserId)
 
 
   const bookingData = await getTenantBookings();

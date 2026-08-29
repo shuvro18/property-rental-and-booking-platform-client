@@ -1,5 +1,9 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+
+
+
 const backEndUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 // for the comment
@@ -42,3 +46,18 @@ export const addBooking = async (data) => {
   const result = await res.json();
   return result;
 };
+
+// delete from favorite
+export const deleteFavorite = async (favoriteId, user) => {
+  console.log("delete favorite id", favoriteId)
+  const res = await fetch(`${backEndUrl}/favorite/${favoriteId}`, {
+    method: "DELETE",
+  });
+  const data = await res.json();
+  if(data.deletedCount > 0){
+    revalidatePath(`/${user}/favorite`)
+  }
+  return data;
+};
+
+
