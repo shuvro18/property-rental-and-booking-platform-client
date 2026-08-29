@@ -93,9 +93,9 @@ const AddPropertyPage = () => {
             ...formData,
             owner: {
             name:user?.name,
-            email: user?.email,
-            
-        }
+            email: user?.email,                       
+        },
+        userId: user?.id,
 
         }
 
