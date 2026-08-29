@@ -2,11 +2,9 @@
 
 import { revalidatePath } from "next/cache";
 
-
-
 const backEndUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-// for the comment
+// for add a comment
 export const postComment = async (data) => {
   const res = await fetch(`${backEndUrl}/comments`, {
     method: "POST",
@@ -49,15 +47,39 @@ export const addBooking = async (data) => {
 
 // delete from favorite
 export const deleteFavorite = async (favoriteId, user) => {
-  console.log("delete favorite id", favoriteId)
+  console.log("delete favorite id", favoriteId);
   const res = await fetch(`${backEndUrl}/favorite/${favoriteId}`, {
     method: "DELETE",
   });
   const data = await res.json();
-  if(data.deletedCount > 0){
-    revalidatePath(`/${user}/favorite`)
+  if (data.deletedCount > 0) {
+    revalidatePath(`/${user}/favorite`);
   }
   return data;
 };
 
+// owner add a property
 
+export const addProperty = async (data) => {
+  const res = await fetch(`${backEndUrl}/addproperty`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  const result = await res.json();
+  return result;
+};
+
+// export const postComment = async (data) => {
+//   const res = await fetch(`${backEndUrl}/comments`, {
+//     method: "POST",
+//     headers: {
+//       "content-type": "application/json",
+//     },
+//     body: JSON.stringify(data),
+//   });
+//   const result = await res.json();
+//   return result;
+// };
