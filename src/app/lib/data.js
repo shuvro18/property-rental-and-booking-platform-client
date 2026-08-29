@@ -20,3 +20,10 @@ export const getComments = async () => {
   const data = await res.json();
   return data;
 };
+
+//get booking
+export const getTenantBookings = async () => {
+  const res = await fetch(`${backEndUrl}/bookings`);
+  const data = await res.json();
+  return data;
+};

@@ -36,7 +36,9 @@ export async function POST(request) {
         contactNumber: bookingData.contactNumber,
         additionalNotes: bookingData.additionalNotes || "",
         status: bookingData.status,
-        bill: "payed"
+        bill: "paid",
+        price:String(bookingData.price),
+        createdAt: new Date().toISOString(),
       },
       mode: "payment",
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
