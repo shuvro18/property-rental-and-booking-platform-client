@@ -1,4 +1,6 @@
+import { auth } from "@/app/lib/auth";
 import { getTenantBookings } from "@/app/lib/data";
+import { headers } from "next/headers";
 import Link from "next/link";
 import { FiHome, FiCalendar, FiDollarSign, FiClock, FiCheckCircle } from "react-icons/fi";
 import { TbCoinTaka } from "react-icons/tb";
@@ -6,12 +8,23 @@ import { TbCoinTaka } from "react-icons/tb";
 
 
 export default async function TenantBookingsPage() {
-  const bookings = await getTenantBookings();
+
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+
+  const loginUserId = session?.user?.id;
+  console.log(loginUserId)
+
+
+  const bookingData = await getTenantBookings();
+  const bookings = bookingData.filter(e => e.userId === loginUserId)
+  
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950  md:p-10">
       <div className="max-w-5xl mx-auto space-y-8">
-        
+
         {/* Page Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
@@ -60,29 +73,28 @@ export default async function TenantBookingsPage() {
 
                 {/* Pricing & Status */}
                 <div className="flex flex-wrap items-center gap-4 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 pt-4 md:pt-0 border-gray-100 dark:border-gray-800">
-                  
+
                   {/* Amount */}
-                  <div className="text-left md:text-right">
+                  <div className="text-left md:text-right flex flex-col gap-2">
                     <span className="text-xs text-gray-400 block">Amount Paid</span>
-                    <span className="text-lg font-bold text-gray-900 dark:text-white flex items-center">
-                      <TbCoinTaka className="text-green-500" />{booking.price} 
+                    <span className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-0.5">
+                      <TbCoinTaka className="text-green-500" />{booking.price}
                     </span>
                   </div>
 
                   {/* Booking Status Badge */}
-                  <div>
+                  <div className="flex flex-col gap-2">
                     <span className="text-xs text-gray-400 block mb-1">Booking Status</span>
-                    <span className={`px-3 py-1 text-xs font-semibold rounded-full capitalize inline-block ${
-                      booking.status === 'confirmed'
-                        ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
-                        : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
-                    }`}>
+                    <span className={`px-3 py-1 text-xs font-semibold rounded-full capitalize inline-block ${booking.status === 'confirmed'
+                      ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                      : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
+                      }`}>
                       {booking.status}
                     </span>
                   </div>
 
                   {/* Payment Status Badge */}
-                  <div>
+                  <div className="flex flex-col gap-2">
                     <span className="text-xs text-gray-400 block mb-1">Payment</span>
                     <span className="px-3 py-1 text-xs font-semibold bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded-full capitalize inline-block">
                       {booking.bill}
