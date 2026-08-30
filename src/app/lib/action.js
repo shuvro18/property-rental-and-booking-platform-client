@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 
-const backEndUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const backEndUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
 // for add a comment
 export const postComment = async (data) => {

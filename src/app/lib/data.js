@@ -1,4 +1,4 @@
-const backEndUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const backEndUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
 // all houses
 export const getHouses = async () => {
