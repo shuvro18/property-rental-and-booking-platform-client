@@ -31,7 +31,7 @@ const AddPropertyPage = () => {
     });
 
     // const [amenityInput, setAmenityInput] = useState("");
-    const [imagePreview, setImagePreview] = useState("");
+    // const [imagePreview, setImagePreview] = useState("");
 
     const propertyTypes = ["Apartment", "House", "Condo", "Studio", "Villa"];
     const rentTypes = ["Monthly", "Weekly", "Daily"];
