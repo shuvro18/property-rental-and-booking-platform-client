@@ -12,7 +12,7 @@ const BookingModal = ({ property }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { data: session } = authClient.useSession();
     const user = session?.user;
-    
+
 
 
     const [loading, setLoading] = useState(false);
@@ -22,7 +22,8 @@ const BookingModal = ({ property }) => {
         const formData = new FormData(e.currentTarget);
 
         const bookingData = {
-            userId: user.id,
+            userId: property?.userId,
+            bookedUser: user?.id,
             propertyId: property?._id,
             propertyTitle: property?.title,
             userName: user?.name || "Anonymous",
@@ -34,7 +35,7 @@ const BookingModal = ({ property }) => {
             status: "pending",
             price: property?.rent,
         };
-        console.log(bookingData)
+        // console.log(bookingData)
 
         setLoading(true);
 

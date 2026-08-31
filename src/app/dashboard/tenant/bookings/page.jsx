@@ -18,7 +18,7 @@ export default async function TenantBookingsPage() {
 
 
   const bookingData = await getTenantBookings();
-  const bookings = bookingData.filter(e => e.userId === loginUserId)
+  const bookings = bookingData.filter(e => e.bookedUser === loginUserId)
   
 
   return (

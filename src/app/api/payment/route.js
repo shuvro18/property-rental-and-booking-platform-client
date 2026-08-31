@@ -28,6 +28,7 @@ export async function POST(request) {
       ],
       metadata: {
         userId: bookingData.userId,
+        bookedUser: bookingData.bookedUser,
         propertyId: bookingData.propertyId,
         propertyTitle: bookingData.propertyTitle,
         userName: bookingData.userName,

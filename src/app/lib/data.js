@@ -14,6 +14,13 @@ export const getSingleHouse = async (id) => {
   return data;
 };
 
+//get user houser
+export const getUserHouse = async (id) => {
+  const res = await fetch(`${backEndUrl}/houses/user/${id}`);
+  const data = await res.json();
+  return data;
+};
+
 // get comments
 export const getComments = async () => {
   const res = await fetch(`${backEndUrl}/comment`);

@@ -2,7 +2,6 @@
 
 import { revalidatePath } from "next/cache";
 
-
 const backEndUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
 // for add a comment
@@ -75,7 +74,6 @@ export const addProperty = async (data) => {
 
 // owner delete property
 export const deleteProperty = async (deleteId) => {
-  
   const res = await fetch(`${backEndUrl}/houses/${deleteId}`, {
     method: "DELETE",
   });
@@ -86,20 +84,32 @@ export const deleteProperty = async (deleteId) => {
   return data;
 };
 
-
 // owner edit property
 
-export const updateProperty = async ( id, updateProperty) => {
+export const updateProperty = async (id, updateProperty) => {
   const res = await fetch(`${backEndUrl}/update/${id}`, {
     method: "PATCH",
-    headers:{
-      "content-type" : "application/json",
+    headers: {
+      "content-type": "application/json",
     },
     body: JSON.stringify(updateProperty),
   });
-  const data = await res.json()
-  
-  return data
-}
+  const data = await res.json();
 
+  return data;
+};
 
+// owner update booking status  houses/bookings/id
+
+export const updateBookingStatus = async (id, newStatus) => {
+  const res = await fetch(`${backEndUrl}/houses/bookings/${id}`, {
+    method: "PATCH",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({status:newStatus}),
+  });
+
+  const data = await res.json();
+  return data;
+};

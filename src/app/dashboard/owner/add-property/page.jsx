@@ -25,9 +25,9 @@ const AddPropertyPage = () => {
         size: "",
         amenities: [],
         images: "",
-        extraFeatures: "",
+
         status: "pending",
-        
+
     });
 
     // const [amenityInput, setAmenityInput] = useState("");
@@ -92,17 +92,17 @@ const AddPropertyPage = () => {
         const finalData = {
             ...formData,
             owner: {
-            name:user?.name,
-            email: user?.email,                       
-        },
-        userId: user?.id,
+                name: user?.name,
+                email: user?.email,
+            },
+            userId: user?.id,
 
         }
 
         const add = await addProperty(finalData)
         toast.success("property added successfully")
 
-       
+
     };
 
     return (
@@ -366,19 +366,7 @@ const AddPropertyPage = () => {
                     )} */}
 
                     {/* Extra Features */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
-                            Extra Features
-                        </label>
-                        <input
-                            type="text"
-                            name="extraFeatures"
-                            value={formData.extraFeatures}
-                            onChange={handleChange}
-                            placeholder=" Balcony, Lake View, Maid Room (comma separated)"
-                            className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
-                        />
-                    </div>
+
                 </div>
 
                 {/* Status Note */}

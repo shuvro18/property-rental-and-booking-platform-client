@@ -137,7 +137,7 @@ const propertyDetailPage = async ({ params }) => {
                                     Extra Features
                                 </h2>
                                 <div className="flex flex-wrap gap-2">
-                                    {property.extraFeatures.map((feature, index) => (
+                                    { property.extraFeatures && property.extraFeatures.length > 0 && property.extraFeatures.map((feature, index) => (
                                         <span
                                             key={index}
                                             className="px-3 py-1.5 text-sm bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-lg"
