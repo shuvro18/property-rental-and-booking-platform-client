@@ -17,7 +17,7 @@ const BookingRequestsPage = async () => {
 
   // Fetch bookings for this owner
   const bookings = await getUserHouse(ownerId);
-  console.log(bookings)
+  // console.log(bookings)
 
   return <BookingRequestsClient bookings={bookings || []} />;
 };
