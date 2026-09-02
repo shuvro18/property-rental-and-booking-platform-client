@@ -49,3 +49,11 @@ export const getOwnerDetail = async (ownerId) => {
   const data = await res.json();
   return data;
 };
+
+// get api for admin earning , houses, tenant, owner (aggregate) /admin/total-earning
+
+export const getAdminDetails = async () => {
+  const res = await fetch(`${backEndUrl}/admin/total-earning`);
+  const data = await res.json();
+  return data;
+};

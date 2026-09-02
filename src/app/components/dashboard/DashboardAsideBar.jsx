@@ -90,11 +90,11 @@ const DashboardSidebar = async () => {
                 href: "/dashboard/admin/bookings",
                 icon: <CalendarCheck size={18} />,
             },
-            {
-                title: "Transactions",
-                href: "/dashboard/admin/transactions",
-                icon: <CreditCard size={18} />,
-            },
+            // {
+            //     title: "Transactions",
+            //     href: "/dashboard/admin/transactions",
+            //     icon: <CreditCard size={18} />,
+            // },
             {
                 title: "Profile",
                 href: "/dashboard/admin/profile",
