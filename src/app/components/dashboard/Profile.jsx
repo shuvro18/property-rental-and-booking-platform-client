@@ -10,7 +10,7 @@ const ProfilePage = async () => {
     });
 
     const user = session?.user;
-    console.log("this is image",user.image, "hwllo")
+    // console.log("this is image",user.image, "hwllo")
 
     if (!user) {
         return (

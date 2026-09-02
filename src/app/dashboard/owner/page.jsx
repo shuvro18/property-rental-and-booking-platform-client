@@ -15,7 +15,7 @@ const OwnerDashboardPage = async () => {
 
   const ownerDetails = await getOwnerDetail(ownerId)
 
-  console.log(ownerId)
+  // console.log(ownerId)
 
 
   // You should return something like this from backend:
