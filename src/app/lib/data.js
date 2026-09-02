@@ -41,3 +41,11 @@ export const getFavorite = async () => {
   const data = await res.json();
   return data;
 };
+
+// get app for total earning booking and property (aggregate)  /owner/total-earnings/:userId
+
+export const getOwnerDetail = async (ownerId) => {
+  const res = await fetch(`${backEndUrl}/owner/total-earnings/${ownerId}`);
+  const data = await res.json();
+  return data;
+};
