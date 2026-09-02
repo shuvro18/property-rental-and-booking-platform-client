@@ -57,3 +57,11 @@ export const getAdminDetails = async () => {
   const data = await res.json();
   return data;
 };
+
+// get all users get api
+
+export const getAllUsers = async () => {
+  const res = await fetch(`${backEndUrl}/all-users`);
+  const data = res.json();
+  return data;
+};

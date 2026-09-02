@@ -107,9 +107,23 @@ export const updateBookingStatus = async (id, newStatus) => {
     headers: {
       "content-type": "application/json",
     },
-    body: JSON.stringify({status:newStatus}),
+    body: JSON.stringify({ status: newStatus }),
   });
 
   const data = await res.json();
+  return data;
+};
+
+// admin update user's role
+
+export const updateUserRole = async (userId, newRole) => {
+  const res = fetch(`${backEndUrl}/update-user-role/${userId}`, {
+    method: "PATCH",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ newRole }),
+  });
+  const data = (await res).json();
   return data;
 };
