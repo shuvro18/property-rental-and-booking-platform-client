@@ -16,6 +16,7 @@ import {
   HomeIcon,
   Menu,
   X,
+  CreditCard,
 } from "lucide-react";
 
 const DashboardSidebarClient = ({ user, role = "tenant" }) => {
@@ -87,6 +88,11 @@ const DashboardSidebarClient = ({ user, role = "tenant" }) => {
         title: "All Bookings",
         href: "/dashboard/admin/bookings",
         icon: <CalendarCheck size={18} />,
+      },
+      {
+        title: "Transactions",
+        href: "/dashboard/admin/transactions",
+        icon: <CreditCard size={18} />,
       },
       {
         title: "Profile",
@@ -172,11 +178,10 @@ const DashboardSidebarClient = ({ user, role = "tenant" }) => {
               key={item.title}
               href={item.href}
               onClick={() => setIsOpen(false)}
-              className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
-                isActive(item.href)
+              className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${isActive(item.href)
                   ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400"
                   : "text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/20"
-              }`}
+                }`}
             >
               <span
                 className={

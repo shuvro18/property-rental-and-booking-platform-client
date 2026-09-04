@@ -84,13 +84,13 @@ const DashboardHomePage = async () => {
         icon: <Building2 size={22} />,
         color: "bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400",
       },
-      // {
-      //   title: "Transactions",
-      //   description: "View all payments",
-      //   href: "/dashboard/admin/transactions",
-      //   icon: <CreditCard size={22} />,
-      //   color: "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400",
-      // },
+      {
+        title: "Transactions",
+        description: "View all payments",
+        href: "/dashboard/admin/transactions",
+        icon: <CreditCard size={22} />,
+        color: "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400",
+      },
     ],
   };
 
