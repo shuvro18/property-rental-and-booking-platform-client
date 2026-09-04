@@ -10,7 +10,7 @@ const MyPropertiesClient = ({ properties: initialProperties }) => {
     const [properties, setProperties] = useState(initialProperties);
     const [selectedFeedback, setSelectedFeedback] = useState(null);
     const [deleteId, setDeleteId] = useState(null); // for delete modal
-    console.log(properties)
+    // console.log(properties)
 
     const handleDeleteConfirm = async () => {
         if (deleteId) {
