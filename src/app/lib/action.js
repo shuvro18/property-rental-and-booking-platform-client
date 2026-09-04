@@ -117,13 +117,27 @@ export const updateBookingStatus = async (id, newStatus) => {
 // admin update user's role
 
 export const updateUserRole = async (userId, newRole) => {
-  const res = fetch(`${backEndUrl}/update-user-role/${userId}`, {
+  const res = await fetch(`${backEndUrl}/update-user-role/${userId}`, {
     method: "PATCH",
     headers: {
       "content-type": "application/json",
     },
     body: JSON.stringify({ newRole }),
   });
-  const data = (await res).json();
+  const data = await res.json();
+  return data;
+};
+
+// admin approve property
+
+export const approveProperty = async (id) => {
+  const res = await fetch(`${backEndUrl}/owner-update-status/${id}`, {
+    method: "PATCH",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ newStatus: "approved" }),
+  });
+  const data = await res.json();
   return data;
 };
