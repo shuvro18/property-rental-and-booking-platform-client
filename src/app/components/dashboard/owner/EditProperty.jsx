@@ -18,6 +18,7 @@ const EditPropertyButton = ({ property, onUpdate }) => {
     // Convert numbers and lists
     const updatedData = {
       ...data,
+      status: "pending",
       rent: Number(data.rent),
       bedrooms: Number(data.bedrooms),
       bathrooms: Number(data.bathrooms),
@@ -35,6 +36,7 @@ const EditPropertyButton = ({ property, onUpdate }) => {
     }
 
     setIsOpen(false);
+    
   };
 
   return (

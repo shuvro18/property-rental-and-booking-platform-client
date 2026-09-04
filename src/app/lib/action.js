@@ -141,3 +141,17 @@ export const approveProperty = async (id) => {
   const data = await res.json();
   return data;
 };
+
+// admin rejection button with rejectProperty
+
+export const rejectProperty = async (id, feedback) => {
+  const res = await fetch(`${backEndUrl}/owner-reject/${id}`, {
+    method: "PATCH",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ rejectFeedback: feedback }),
+  });
+  const data = await res.json();
+  return data;
+};

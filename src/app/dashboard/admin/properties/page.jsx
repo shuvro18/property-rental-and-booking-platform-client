@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { getHouses } from "@/app/lib/data";
-import { approveProperty, deleteProperty, updateProperty } from "@/app/lib/action";
+import { approveProperty, deleteProperty, rejectProperty, updateProperty } from "@/app/lib/action";
 
 import EditPropertyAdmin from "@/app/components/dashboard/admin/EditPropertyAdmin";
 
@@ -32,6 +32,7 @@ async function rejectAction(formData) {
     const id = formData.get("propertyId");
     const feedback = formData.get("rejectionFeedback");
     if (!id || !feedback?.trim()) return;
+    
     await rejectProperty(id, feedback.trim());
     redirect("/dashboard/admin/properties");
 }
