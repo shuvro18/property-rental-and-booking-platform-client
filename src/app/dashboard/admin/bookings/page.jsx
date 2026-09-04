@@ -19,7 +19,7 @@ const AllBookingsPage = async () => {
     }
 
     const bookings = await getTenantBookings();
-    console.log(bookings)
+    // console.log(bookings)
 
     const getStatusBadge = (status) => {
         const styles = {

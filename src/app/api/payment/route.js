@@ -40,6 +40,7 @@ export async function POST(request) {
         bill: "paid",
         price:String(bookingData.price),
         createdAt: new Date().toISOString(),
+        owner: bookingData.owner,
       },
       mode: "payment",
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,

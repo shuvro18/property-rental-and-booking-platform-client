@@ -14,7 +14,6 @@ const BookingModal = ({ property }) => {
     const user = session?.user;
 
 
-
     const [loading, setLoading] = useState(false);
 
     const handleBookingSubmit = async (e) => {
@@ -22,7 +21,7 @@ const BookingModal = ({ property }) => {
         const formData = new FormData(e.currentTarget);
 
         const bookingData = {
-            userId: property?.userId,
+            userId: property?._id,
             bookedUser: user?.id,
             propertyId: property?._id,
             propertyTitle: property?.title,
@@ -34,6 +33,7 @@ const BookingModal = ({ property }) => {
             createdAt: new Date().toISOString(),
             status: "pending",
             price: property?.rent,
+            owner:property.owner.name
         };
         // console.log(bookingData)
 

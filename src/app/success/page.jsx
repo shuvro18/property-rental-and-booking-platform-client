@@ -24,11 +24,14 @@ export default async function Success({ searchParams }) {
   }
 
   if (status === 'complete') {
-    const result = await addBooking({...metadata, session_id})
+    const paymentIntentId = typeof session.payment_intent === "string"
+      ? session.payment_intent
+      : session.payment_intent?.id;
+    const result = await addBooking({ ...metadata, paymentIntentId, session_id })
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex items-center justify-center px-4">
         <div className="max-w-md w-full bg-white dark:bg-gray-900 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-800 p-8 text-center space-y-6 animate-in fade-in zoom-in duration-300">
-          
+
           {/* Success Icon */}
           <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto shadow-inner">
             <FiCheckCircle size={36} />
