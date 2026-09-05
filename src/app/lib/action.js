@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { getTokenServer } from "./getTokenServer";
 
 const backEndUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
@@ -61,10 +62,12 @@ export const deleteFavorite = async (favoriteId, user) => {
 // owner add a property
 
 export const addProperty = async (data) => {
+  const token = await getTokenServer();
   const res = await fetch(`${backEndUrl}/addproperty`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(data),
   });

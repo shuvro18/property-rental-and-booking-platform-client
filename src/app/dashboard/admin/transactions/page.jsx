@@ -18,7 +18,7 @@ const TransactionsPage = async () => {
   }
 
   const transactions = await getTenantBookings();
-  console.log(transactions)
+  // console.log(transactions)
 // const transactions = [{
 //   transactionId: "txn_123...",
 //   propertyName: "Modern Apartment",
