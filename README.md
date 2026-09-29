@@ -10,6 +10,9 @@
 **Nestora** is a modern, high-performance, full-stack property rental and booking web platform built with the **Next.js App Router**, **React 19**, and **Tailwind CSS v4**. It bridges the gap between property owners, prospective tenants, and administrators by providing seamless property discovery, automated reservation workflows, secure Stripe checkout, and role-tailored dashboards.
 
 ---
+**Live Link:** https://property-rental-and-booking-platfor-ivory.vercel.app/ <br/>
+**client Side Repository Link:** https://github.com/shuvro18/property-rental-and-booking-platform-client <br/>
+**Server Side Repository Link:** https://github.com/shuvro18/property-rental-and-booking-platform-client
 
 ## 🌟 Key Highlights & Feature Matrix
 
