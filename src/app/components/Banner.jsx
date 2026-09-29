@@ -1,17 +1,44 @@
 "use client";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FiSearch, FiMapPin, FiHome, FiDollarSign } from "react-icons/fi";
 
 const Banner = () => {
+  const router = useRouter();
+  const [location, setLocation] = useState("");
+  const [propertyType, setPropertyType] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const params = new URLSearchParams();
+    if (location.trim()) {
+      params.set("location", location.trim());
+    }
+    if (propertyType && propertyType.toLowerCase() !== "any") {
+      params.set("propertyType", propertyType);
+    }
+    if (minPrice && Number(minPrice) > 0) {
+      params.set("minPrice", minPrice);
+    }
+    if (maxPrice && Number(maxPrice) > 0) {
+      params.set("maxPrice", maxPrice);
+    }
+
+    router.push(`/properties?${params.toString()}`);
+  };
+
   return (
     <section className="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-        height={1000}
-        width={1000}
+          height={1000}
+          width={1000}
           src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop"
           alt="Luxury home"
           className="w-full h-full object-cover"
@@ -56,7 +83,7 @@ const Banner = () => {
           className="max-w-5xl mx-auto"
         >
           <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-4 md:p-5 border border-gray-100 dark:border-gray-800">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-4">
+            <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-4">
               
               {/* Location */}
               <div className="relative">
@@ -67,7 +94,9 @@ const Banner = () => {
                   <FiMapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500" size={18} />
                   <input
                     type="text"
-                    placeholder="City or area"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    placeholder="City or area (e.g. Dhaka)"
                     className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 transition-all"
                   />
                 </div>
@@ -81,14 +110,17 @@ const Banner = () => {
                 <div className="relative">
                   <FiHome className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500" size={18} />
                   <select
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 appearance-none transition-all"
+                    value={propertyType}
+                    onChange={(e) => setPropertyType(e.target.value)}
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 appearance-none transition-all cursor-pointer"
                   >
                     <option value="">Any Type</option>
-                    <option value="apartment">Apartment</option>
-                    <option value="house">House</option>
-                    <option value="condo">Condo</option>
-                    <option value="studio">Studio</option>
-                    <option value="villa">Villa</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="House">House</option>
+                    <option value="Condo">Condo</option>
+                    <option value="Studio">Studio</option>
+                    <option value="Villa">Villa</option>
+                    <option value="Duplex">Duplex</option>
                   </select>
                 </div>
               </div>
@@ -96,12 +128,15 @@ const Banner = () => {
               {/* Min Price */}
               <div className="relative">
                 <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5 ml-1">
-                  Min Price
+                  Min Rent (৳)
                 </label>
                 <div className="relative">
                   <FiDollarSign className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500" size={18} />
                   <input
                     type="number"
+                    min="0"
+                    value={minPrice}
+                    onChange={(e) => setMinPrice(e.target.value)}
                     placeholder="0"
                     className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 transition-all"
                   />
@@ -111,12 +146,15 @@ const Banner = () => {
               {/* Max Price */}
               <div className="relative">
                 <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5 ml-1">
-                  Max Price
+                  Max Rent (৳)
                 </label>
                 <div className="relative">
                   <FiDollarSign className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500" size={18} />
                   <input
                     type="number"
+                    min="0"
+                    value={maxPrice}
+                    onChange={(e) => setMaxPrice(e.target.value)}
                     placeholder="Any"
                     className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 transition-all"
                   />
@@ -126,14 +164,14 @@ const Banner = () => {
               {/* Search Button */}
               <div className="flex items-end">
                 <button
-                  type="button"
-                  className="w-full h-12.5 flex items-center justify-center gap-2 bg-linear-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  type="submit"
+                  className="w-full h-12.5 flex items-center justify-center gap-2 bg-linear-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                 >
                   <FiSearch size={20} />
                   <span>Search</span>
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </motion.div>
       </div>

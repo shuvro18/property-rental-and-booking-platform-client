@@ -18,6 +18,7 @@ import {
   X,
   CreditCard,
 } from "lucide-react";
+import ThemeToggle from "../ThemeToggle";
 
 const DashboardSidebarClient = ({ user, role = "tenant" }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -119,12 +120,15 @@ const DashboardSidebarClient = ({ user, role = "tenant" }) => {
           </span>
         </div>
 
-        <button
-          onClick={() => setIsOpen(true)}
-          className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-        >
-          <Menu size={22} />
-        </button>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            onClick={() => setIsOpen(true)}
+            className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+          >
+            <Menu size={22} />
+          </button>
+        </div>
       </div>
 
       {/* Mobile Overlay */}
@@ -197,10 +201,10 @@ const DashboardSidebarClient = ({ user, role = "tenant" }) => {
           ))}
         </nav>
 
-        {/* User Info */}
-        <div className="p-4 border-t border-gray-200 dark:border-gray-800">
-          <div className="flex items-center gap-3 px-2">
-            <div className="w-9 h-9 rounded-full bg-linear-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white font-semibold text-sm">
+        {/* User Info & Theme Toggle */}
+        <div className="p-4 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3 px-1 min-w-0">
+            <div className="w-9 h-9 shrink-0 rounded-full bg-linear-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white font-semibold text-sm">
               {user?.name?.charAt(0)?.toUpperCase() || "U"}
             </div>
             <div className="overflow-hidden">
@@ -212,6 +216,7 @@ const DashboardSidebarClient = ({ user, role = "tenant" }) => {
               </p>
             </div>
           </div>
+          <ThemeToggle />
         </div>
       </aside>
     </>

@@ -10,10 +10,10 @@ import { useRouter } from "next/navigation";
 
 
 
+import ThemeToggle from "../components/ThemeToggle";
+
 const Login = () => {
     const router = useRouter()
-
-
 
     //signIN korar jonno 
     const handleLogin = async () => {
@@ -23,7 +23,6 @@ const Login = () => {
     };
 
     // for button eye effect
-
     const [showPassword, setShowPassword] = useState(true)
 
     const handleSubmit = async (e) => {
@@ -50,28 +49,33 @@ const Login = () => {
         } catch (err) {
             console.log(err)
         }
-
-
-
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center  px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex min-h-screen items-center justify-center bg-gray-50/50 dark:bg-gray-950 px-4 py-12 pt-24 sm:px-6 lg:px-8 transition-colors">
             {/* মূল কার্ড কন্টেইনার */}
-            <div className="w-full max-w-md space-y-6 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+            <div className="w-full max-w-md space-y-6 rounded-3xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-8 shadow-xl relative transition-colors">
+                
+                {/* Theme Toggle Quick Access */}
+                <div className="absolute top-6 right-6">
+                    <ThemeToggle />
+                </div>
 
                 {/* হেডার */}
-                <div className="text-center">
-                    <h2 className="text-3xl font-bold tracking-tight text-slate-900">
+                <div className="text-center pt-2">
+                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
                         Welcome Back
                     </h2>
+                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                        Sign in to continue to Nestora
+                    </p>
                 </div>
 
                 {/* ফর্ম */}
                 <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
                     {/* ইমেইল ইনপুট */}
                     <div className="space-y-1">
-                        <label htmlFor="email" className="text-xs font-medium text-gray-500">
+                        <label htmlFor="email" className="text-xs font-medium text-gray-600 dark:text-gray-400">
                             Email
                         </label>
                         <input
@@ -80,47 +84,45 @@ const Login = () => {
                             type="email"
                             autoComplete="email"
                             required
-                            placeholder="dr.shuvro@mediqueue.edu"
-                            className="block w-full rounded-lg border border-gray-300 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 placeholder-gray-400 focus:border-slate-500 focus:bg-white focus:outline-none transition-colors"
+                            placeholder="user@example.com"
+                            className="block w-full rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none transition-colors"
                         />
                     </div>
 
                     {/* পাসওয়ার্ড ইনপুট */}
                     <div className="space-y-1">
                         <div className="flex items-center justify-between">
-                            <label htmlFor="password" className="text-xs font-medium text-gray-500">
+                            <label htmlFor="password" className="text-xs font-medium text-gray-600 dark:text-gray-400">
                                 Password
                             </label>
-                            <a href="#" className="text-xs font-semibold text-blue-600 hover:underline">
+                            <a href="#" className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">
                                 Forgot Password?
                             </a>
                         </div>
                         <div className="relative flex items-center">
-
                             <input
                                 id="password"
                                 name="password"
                                 type={showPassword ? "password" : "text"}
                                 required
                                 placeholder="••••••••"
-                                className="block w-full rounded-lg border border-gray-300 bg-slate-50 pl-3 pr-10 py-2.5 text-sm text-slate-900 placeholder-gray-400 focus:border-slate-500 focus:bg-white focus:outline-none transition-colors"
+                                className="block w-full rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 pl-3 pr-10 py-2.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none transition-colors"
                             />
 
                             <button
-                                className="absolute right-3 text-gray-400 hover:text-gray-600 focus:outline-none "
+                                className="absolute right-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none cursor-pointer"
                                 type="button"
                                 onClick={() => { setShowPassword(!showPassword) }}
                             >
                                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                             </button>
-
                         </div>
                     </div>
 
                     {/* লগইন বাটন */}
                     <button
                         type="submit"
-                        className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#0a2540] px-4 py-3 text-sm font-semibold text-white shadow hover:bg-[#0f2e4f] focus:outline-none transition-colors mt-6"
+                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-linear-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 px-4 py-3 text-sm font-semibold text-white shadow-md hover:shadow-lg focus:outline-none transition-all mt-6 cursor-pointer"
                     >
                         Login
                         <LogIn className="h-4 w-4" />
@@ -129,16 +131,16 @@ const Login = () => {
 
                 {/* OR ডিভাইডার */}
                 <div className="relative flex items-center py-2">
-                    <div className="grow border-t border-gray-200"></div>
-                    <span className="shrink mx-4 text-xs font-medium text-gray-400">OR</span>
-                    <div className="grow border-t border-gray-200"></div>
+                    <div className="grow border-t border-gray-200 dark:border-gray-800"></div>
+                    <span className="shrink mx-4 text-xs font-medium text-gray-400 dark:text-gray-500">OR</span>
+                    <div className="grow border-t border-gray-200 dark:border-gray-800"></div>
                 </div>
 
                 {/* গুগল সাইন-ইন বাটন */}
                 <button
-                onClick={handleLogin}
+                    onClick={handleLogin}
                     type="button"
-                    className="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-gray-100 hover:bg-gray-200 px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors cursor-pointer"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-200 transition-colors cursor-pointer"
                 >
                     {/* গুগল জি-লোগো (SVG) */}
                     <svg className="h-4 w-4 mr-1" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
@@ -153,9 +155,9 @@ const Login = () => {
                 </button>
 
                 {/* রেজিস্টার লিংক */}
-                <div className="text-center text-sm text-gray-600 mt-4 ">
+                <div className="text-center text-sm text-gray-600 dark:text-gray-400 mt-4">
                     Do not have an account?{" "}
-                    <Link href="/register" className="font-bold text-[#0a2540] hover:underline ">
+                    <Link href="/register" className="font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
                         Register
                     </Link>
                 </div>

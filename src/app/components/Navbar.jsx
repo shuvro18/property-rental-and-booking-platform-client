@@ -23,7 +23,7 @@ const Navbar = () => {
     }
 
     return (
-        <header className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm">
+        <header className="fixed top-0 left-0 w-full z-50 bg-white/95 dark:bg-gray-950/95 backdrop-blur-md shadow-xs border-b border-gray-100 dark:border-gray-800 transition-colors">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16 md:h-20">
 
@@ -41,14 +41,14 @@ const Navbar = () => {
                     <nav className="hidden md:flex items-center gap-8">
                         <Link
                             href="/"
-                            className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors relative group"
+                            className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors relative group"
                         >
                             Home
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 group-hover:w-full transition-all duration-300"></span>
                         </Link>
                         <Link
                             href="/properties"
-                            className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors relative group"
+                            className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors relative group"
                         >
                             All Properties
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 group-hover:w-full transition-all duration-300"></span>
@@ -56,7 +56,7 @@ const Navbar = () => {
                         {user && (
                             <Link
                                 href="/dashboard"
-                                className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors relative group"
+                                className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors relative group"
                             >
                                 Dashboard
                                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 group-hover:w-full transition-all duration-300"></span>
@@ -66,124 +66,133 @@ const Navbar = () => {
 
                     {/* Desktop Auth Buttons */}
                     <div className="hidden md:flex items-center gap-3">
-                        <ThemeToggle></ThemeToggle>
+                        <ThemeToggle />
                         {/* When logged out */}
-
-                        {!user && (<div className="flex items-center gap-3"><Link
-                            href="/login"
-                            className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors"
-                        >
-                            Login
-                        </Link>
-                            <Link
-                                href="/register"
-                                className="px-5 py-2.5 text-sm font-medium text-white bg-linear-to-r from-indigo-600 to-violet-600 rounded-lg hover:from-indigo-700 hover:to-violet-700 shadow-md hover:shadow-lg transition-all duration-300"
-                            >
-                                Register
-                            </Link>
-                        </div>
+                        {!user && (
+                            <div className="flex items-center gap-3">
+                                <Link
+                                    href="/login"
+                                    className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                                >
+                                    Login
+                                </Link>
+                                <Link
+                                    href="/register"
+                                    className="px-5 py-2.5 text-sm font-medium text-white bg-linear-to-r from-indigo-600 to-violet-600 rounded-lg hover:from-indigo-700 hover:to-violet-700 shadow-md hover:shadow-lg transition-all duration-300"
+                                >
+                                    Register
+                                </Link>
+                            </div>
                         )}
 
-
-                        {/* When logged in (uncomment & use later) */}
+                        {/* When logged in */}
                         {user && (
                             <div className="flex items-center gap-3">
-                                <span className="text-sm font-medium text-gray-700">Hello, {user.name}</span>
+                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    Hello, {user.name}
+                                </span>
 
                                 <div className="dropdown dropdown-end">
                                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                         <div className="w-10 rounded-full">
-                                            <Image src={user.image} width={60} height={60} alt="user's picture"></Image>
+                                            <Image src={user.image} width={60} height={60} alt="user's picture" />
                                         </div>
                                     </div>
                                     <ul
                                         tabIndex={-1}
-                                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                                        className="menu menu-sm dropdown-content bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-box z-1 mt-3 w-52 p-2 shadow-lg"
+                                    >
                                         <li>
-                                            <Link href={`/dashboard`} className="justify-between text-white">
+                                            <Link href={`/dashboard`} className="justify-between text-gray-800 dark:text-gray-200">
                                                 Dashboard
                                                 <span className="badge">New</span>
                                             </Link>
                                         </li>
-                                        <li><Link className="text-white" href="/settings">Settings</Link></li>
-                                        <li><button className="text-white" onClick={async () => authClient.signOut()} >
-                                            Logout
-                                        </button></li>
+                                        <li><Link className="text-gray-800 dark:text-gray-200" href="/settings">Settings</Link></li>
+                                        <li>
+                                            <button className="text-red-600 dark:text-red-400" onClick={async () => authClient.signOut()}>
+                                                Logout
+                                            </button>
+                                        </li>
                                     </ul>
                                 </div>
-
                             </div>
                         )}
                     </div>
 
-                    {/* Mobile Toggle */}
-                    <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
-                    >
-                        {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-                    </button>
+                    {/* Mobile Toggle & Theme Button */}
+                    <div className="flex md:hidden items-center gap-2">
+                        <ThemeToggle />
+                        <button
+                            onClick={() => setIsOpen(!isOpen)}
+                            className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                        >
+                            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+                        </button>
+                    </div>
 
                 </div>
-            </div >
-
-
-
+            </div>
 
             {/* Mobile Menu */}
-            < div
-                className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
-                    }`}
+            <div
+                className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+                    isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+                }`}
             >
-                <div className="px-4 pb-4 pt-2 space-y-1 bg-white border-t border-gray-100">
+                <div className="px-4 pb-4 pt-2 space-y-1 bg-white dark:bg-gray-950 border-t border-gray-100 dark:border-gray-800">
                     <Link
                         href="/"
                         onClick={() => setIsOpen(false)}
-                        className="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors"
+                        className="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-900 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                     >
                         Home
                     </Link>
                     <Link
                         href="/properties"
                         onClick={() => setIsOpen(false)}
-                        className="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors"
+                        className="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-900 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                     >
                         All Properties
                     </Link>
 
-                    {user ? (<div>
-                        <Link
-                            href={`/dashboard`}
-                            onClick={() => setIsOpen(false)}
-                            className="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors"
-                        >
-                            Dashboard
-                        </Link>
-                        <button onClick={async () => authClient.signOut()} className="px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-                            Logout
-                        </button>
-                    </div>) : (
-                        <div className="border-t border-gray-100 pt-3 mt-2 space-y-2">
+                    {user ? (
+                        <div>
+                            <Link
+                                href={`/dashboard`}
+                                onClick={() => setIsOpen(false)}
+                                className="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-900 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                            >
+                                Dashboard
+                            </Link>
+                            <button
+                                onClick={async () => authClient.signOut()}
+                                className="w-full text-left px-4 py-2 text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-colors"
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    ) : (
+                        <div className="border-t border-gray-100 dark:border-gray-800 pt-3 mt-2 space-y-2">
                             <Link
                                 href="/login"
                                 onClick={() => setIsOpen(false)}
-                                className="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                                className="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
                             >
                                 Login
                             </Link>
                             <Link
                                 href="/register"
                                 onClick={() => setIsOpen(false)}
-                                className="block px-4 py-3 rounded-lg text-sm font-medium text-center text-white bg-linear-to-r from-indigo-600 to-violet-600"
+                                className="block px-4 py-3 rounded-lg text-sm font-medium text-center text-white bg-linear-to-r from-indigo-600 to-violet-600 rounded-lg"
                             >
                                 Register
                             </Link>
                         </div>
-
                     )}
                 </div>
-            </div >
-        </header >
+            </div>
+        </header>
     );
 };
 
