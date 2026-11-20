@@ -57,9 +57,9 @@ const Login = () => {
             <div className="w-full max-w-md space-y-6 rounded-3xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-8 shadow-xl relative transition-colors">
                 
                 {/* Theme Toggle Quick Access */}
-                <div className="absolute top-6 right-6">
+                {/* <div className="absolute top-6 right-6">
                     <ThemeToggle />
-                </div>
+                </div> */}
 
                 {/* হেডার */}
                 <div className="text-center pt-2">
@@ -140,7 +140,7 @@ const Login = () => {
                 <button
                     onClick={handleLogin}
                     type="button"
-                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-200 transition-colors cursor-pointer"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-200 transition-colors cursor-pointer"
                 >
                     {/* গুগল জি-লোগো (SVG) */}
                     <svg className="h-4 w-4 mr-1" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
