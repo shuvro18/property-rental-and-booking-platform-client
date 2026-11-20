@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 
 
 
-import ThemeToggle from "../components/ThemeToggle";
+
 
 const Login = () => {
     const router = useRouter()
@@ -38,12 +38,13 @@ const Login = () => {
                 email: email, // required
                 password: password, // required
                 rememberMe: true,
-                // callbackURL: "/",
+                callbackURL: "/",
             });
             if (error) {
                 toast.error(error.message)
             } else {
                 toast.success("successfully login ", name)
+                router.refresh();
                 router.push("/")
             }
         } catch (err) {
