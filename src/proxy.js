@@ -20,7 +20,7 @@ export async function proxy(request) {
     return NextResponse.redirect(new URL('/register', request.url))
    }
 
-//    return NextResponse.next()
+   return NextResponse.next()
 }
  
 // Alternatively, you can use a default export:
